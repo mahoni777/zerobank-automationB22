@@ -32,7 +32,7 @@ public class loginStepDefs {
         loginPage.login(arg0,arg1);
     }
 
-    @Then("the {string} page should be displayed")
+    @Then("the {} page should be displayed")
     public void thePageShouldBeDisplayed(String pageName) {
         String currentTitle = Driver.getDriver().getTitle();
         String selectedTab = basePage.selectedTab.getText();
@@ -40,5 +40,10 @@ public class loginStepDefs {
         Assert.assertEquals("Page is not matching as expected", pageName,selectedTab);
         Assert.assertTrue("Title is not matching", currentTitle.toLowerCase().contains(pageName.toLowerCase()) );
 
+    }
+
+    @Then("Error message {} should be displayed")
+    public void errorMessageShouldBeDisplayed(String expectedError) {
+        Assert.assertEquals("Error message does not match", expectedError,loginPage.errorMessage.getText() );
     }
 }
