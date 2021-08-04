@@ -4,8 +4,10 @@ import com.zerobank.pages.LoginPage;
 import com.zerobank.utilities.BrowserUtils;
 import com.zerobank.utilities.ConfigurationReader;
 import com.zerobank.utilities.Driver;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
+import org.junit.Assert;
 import org.openqa.selenium.By;
 
 public class loginStepDefs {
@@ -21,16 +23,8 @@ public class loginStepDefs {
     }
 
 
-    @Then("the user enters credentials and logs in")
-    public void the_user_enters_credentials_and_logs_in() {
-      loginPage.username.sendKeys("username");
-      loginPage.password.sendKeys("password");
-      loginPage.loginButton.click();
-        BrowserUtils.sleep(1);
-     loginPage.resolveUnsecureConnections();
-
-
-
-
+    @And("User logins with username {string} and password {string}")
+    public void userLoginsWithUsernameAndPassword(String arg0, String arg1) {
+        loginPage.login(arg0,arg1);
     }
 }

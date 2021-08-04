@@ -16,25 +16,17 @@ public class LoginPage {
     WebDriverWait wait = new WebDriverWait(Driver.getDriver(), 10);
 
     @FindBy(id = "user_login")
-    public WebElement username;
+    public WebElement usernameInput;
 
     @FindBy(id = "user_password")
-    public WebElement password;
+    public WebElement passwordInput;
 
     @FindBy(xpath = "//input[@name='submit']")
     public WebElement loginButton;
 
-    @FindBy(xpath = "//button[@id='details-button']")
-    private WebElement advanced;
-
-    @FindBy(xpath = "//a[@id='proceed-link']")
-    private WebElement proceedLink;
-
-    public void resolveUnsecureConnections() {
-        wait.until(ExpectedConditions.visibilityOf(advanced));
-        advanced.click();
-        wait.until(ExpectedConditions.visibilityOf(proceedLink));
-        proceedLink.click();
-
+    public void login(String username, String password){
+        usernameInput.sendKeys(username);
+        passwordInput.sendKeys(password);
+        loginButton.click();
     }
 }
